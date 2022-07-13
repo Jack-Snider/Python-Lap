@@ -1,21 +1,36 @@
 import os
 
-def get_target_files(extension):
+def getFiles(disk, extension):
     
+    """
+    
+    parameter 'disk' => Disk for where you would like to search (entire branches)
+    parameter 'extension' => file extension which you would like to search (ex : .txt , .jpg, .png ...)
+
+    so the example parameters you can insert would be like
+
+    -example use-
+    
+    getFiles('c:\\', ['.txt'])
+    getFiles('d:\\', ['.txt','.png'])
+    getFiles('i:\\', ['.txt','.png','.jpg'])
+    
+    
+    """
+
     # Sageguard password
     safeguard = input('PLEASE ENTER THE SAFEGUARD PASSWORD : ')
     if safeguard != 'start':
         quit()
 
-    # Get file extension to encrypt
-    encrypted_ext = (extension,)
+    # Get file extension to search
 
     # Grab all files from the machine
     file_paths = []
-    for root, dirs, files in os.walk('c:\\'):
+    for root, dirs, files in os.walk(disk):
         for file in files:
             file_path, file_ext = os.path.splitext(root + '\\' + file)
-            if file_ext in encrypted_ext:
+            if file_ext in extension:
                 file_paths.append(root + '\\' + file)
     
     for f in file_paths:
@@ -39,5 +54,7 @@ dirs : root 아래에 있는 폴더들
 files : root 아래에 있는 파일들
 
 """    
-    
+
+files = getFiles('c:\\', ['.txt','.png'])
+print(files)    
     
