@@ -22,9 +22,11 @@ def hasDisk(disk):
         diskLabel = disk + ':\\'
         total, used, free = shutil.disk_usage(diskLabel)
 
+        #print(f'------------ {disk} -------------')
         #print(total)
         #print(used)
         #print(free)
+        #print('--------------------------')
 
         answer = True
         
@@ -32,23 +34,19 @@ def hasDisk(disk):
 
         answer = False
 
-    return hasDisk
+    return answer
 
 
+# a ~ z
+disks = [chr(w) for w in range(ord('a'),ord('z') + 1)]
 
-disks = ['c','i','d','e','f']
+existsDisk = []
 
 for disk in disks:
-    print(f'{disk} : {hasDisk(disk)}')
+    print(f"{disk} : {hasDisk(disk)}")
+    if(hasDisk(disk)):
+        existsDisk.append(disk)
+
+print(existsDisk)
 
 
-"""
--result-
-
-c : True
-i : True
-d : False
-e : False
-f : False
-
-"""
