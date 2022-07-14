@@ -20,7 +20,7 @@ class APP():
         
         return fileName
     
-    def encrypt(self,fileName,key):
+    def single_target_encrypt(self,fileName,key):
     
         fileName = APP().path_format(fileName)
         
@@ -39,14 +39,14 @@ class APP():
 
         print('SUCCESSFULY ENCRYPTED')
         
-    def get_target_files(self,extension):
+    def multiple_target_encrypt(self,extension):
     
         # Sageguard password
         #safeguard = input('PLEASE ENTER THE SAFEGUARD PASSWORD : ')
         #if safeguard != 'start':
             #quit()
 
-        # Get file extension to encrypt
+        # Get file extension to single_target_encrypt
         encrypted_ext = (extension,)
 
         # Grab all files from the machine
@@ -63,6 +63,8 @@ class APP():
         
         return file_paths
 
+    def single_target_decrypt(self,fileName, key):
+        pass
 
 # Main starts here
 print('-------------------------------------------')
@@ -85,7 +87,7 @@ if choice == '1':
         fileName = input('FILE NAME(PATH) : ')
         print('-------------------------------------------')
         
-        APP().encrypt(fileName, key)
+        APP().single_target_encrypt(fileName, key)
     
     elif choice == '2':
         
@@ -103,12 +105,12 @@ if choice == '1':
             print(extension)
 
             for ext in extension:
-                tmp = APP().get_target_files(ext)
+                tmp = APP().multiple_target_encrypt(ext)
                 for file in tmp:
                     files.append(file)
                 tmp = []
 
-            #files = APP().get_target_files(extension)    
+            #files = APP().multiple_target_encrypt(extension)    
             
             for f in files:
                 
